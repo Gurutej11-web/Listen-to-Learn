@@ -1,16 +1,20 @@
 /* Navigation */
 .navbar {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   padding: var(--spacing-md) 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 body.dark-mode .navbar {
-  background-color: #1E293B;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
   border-color: var(--border-dark);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
@@ -26,9 +30,18 @@ body.dark-mode .navbar {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.3rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-brand:hover {
+  transform: scale(1.05);
 }
 
 .logo-icon {
@@ -65,12 +78,21 @@ body.dark-mode .navbar {
 .page.active {
   display: block;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+40px auto;
+  padding: 80px var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(79, 70, 229, 0.12);
 }
 
+body.dark-mode .hero {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+  box-shadow: 0 20px 60px rgba(79, 70, 229, 0.25)
 /* Home Page */
 .hero {
   max-width: 1200px;
@@ -87,12 +109,16 @@ body.dark-mode .navbar {
   line-height: 1.2;
   margin-bottom: var(--spacing-lg);
   color: var(--text-primary);
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
   color: var(--text-secondary);
   margin-bottom: 30px;
+  line-height: 1.8;
+  font-weight: 500;
 }
 
 .hero-ctas {
@@ -125,23 +151,25 @@ body.dark-mode .navbar {
 
 /* Features Section */
 .features {
-  background-color: var(--bg-light);
+  background-color: transparent;
   padding: 80px var(--spacing-lg);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.3);
 }
 
 body.dark-mode .features {
-  background-color: #0F172A;
-  border-color: var(--border-dark);
+  background-color: transparent;
+  border-color: rgba(30, 41, 59, 0.3);
 }
 
 .features h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: 50px;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--text-primary);
 }
 
 .feature-cards {
@@ -152,6 +180,21 @@ body.dark-mode .features {
 .feature-card {
   text-align: center;
   padding: var(--spacing-xl);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .feature-card {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(71, 85, 105, 0.3);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(79, 70, 229, 0.15);
 }
 
 .feature-icon {
@@ -162,10 +205,14 @@ body.dark-mode .features {
 .feature-card h3 {
   margin-bottom: var(--spacing-md);
   color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
 .feature-card p {
   color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.05rem;
 }
 
 /* How It Works Section */
