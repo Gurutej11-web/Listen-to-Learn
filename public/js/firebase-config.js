@@ -1,12 +1,13 @@
 // Firebase Configuration
 // Replace these with your Firebase project credentials
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "listen-to-learn-project.firebaseapp.com",
-  projectId: "listen-to-learn-project",
-  storageBucket: "listen-to-learn-project.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBVaELLYwYXnZEOSZOdN5FBcwJ-zryubvA",
+  authDomain: "listen-to-learn-3e9a7.firebaseapp.com",
+  projectId: "listen-to-learn-3e9a7",
+  storageBucket: "listen-to-learn-3e9a7.firebasestorage.app",
+  messagingSenderId: "256100916578",
+  appId: "1:256100916578:web:f7370319ffd379067ca03b",
+  measurementId: "G-BXBC1GPX6F"
 };
 
 // Initialize Firebase

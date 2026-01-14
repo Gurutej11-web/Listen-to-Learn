@@ -1,0 +1,17 @@
+{
+  "name": "listen-to-learn",
+  "version": "1.0.0",
+  "description": "A student-first lecture companion built entirely with Firebase",
+  "scripts": {
+    "serve": "firebase serve",
+    "deploy": "firebase deploy",
+    "build": "echo 'No build step needed for vanilla JS'",
+    "start": "firebase emulators:start"
+  },
+  "dependencies": {
+    "firebase": "^10.7.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  }
+}
