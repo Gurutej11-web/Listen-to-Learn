@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listen to Learn - Turn Lectures into Learning</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/lecture.css">
+  <link rel="stylesheet" href="css/enhancements.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/polish.css">
+</head>
+<body>
+  <script src="js/theme.js"></script>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="logo-icon">🎧📘</span>
+        <span class="logo-text">Listen to Learn</span>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="#" class="nav-link" onclick="navigateTo('home')">Home</a>
+        <div class="nav-auth">
+          <button class="btn btn-secondary btn-small" onclick="toggleDarkMode()">🌙</button>
+          <button class="btn btn-secondary btn-small" id="signInBtn" onclick="navigateTo('login')">Sign In</button>
+          <button class="btn btn-primary btn-small" id="signUpBtn" onclick="navigateTo('login')">Sign Up</button>
+          <button class="btn btn-secondary btn-small" id="signOutBtn" onclick="signOut()" style="display: none;">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="home-page" class="page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Listen Once. Learn Forever.</h1>
+        <p class="hero-subtitle">Turn lectures into clean, structured notes automatically. Organize, highlight, study—all in one place.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="navigateTo('login')">Sign in with Google</button>
+          <button class="btn btn-secondary" onclick="scrollToSection('features')">View Features</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-graphic">📚✨</div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <h2>What Makes Listen to Learn Different</h2>
+      <div class="feature-cards grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Organized Notes</h3>
+          <p>Lectures are automatically structured into topics, subtopics, and bullet points—not just raw transcription.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Key Ideas</h3>
+          <p>Extract and highlight the concepts that matter most. Perfect for exam prep and quick review.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Deep Dives</h3>
+          <p>Expand any topic with simplified explanations, examples, and context—understanding over memorization.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎤</div>
+          <h3>Easy Recording</h3>
+          <p>Record lectures directly with your browser mic, or upload audio from Zoom, Teams, or anywhere.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Smart Study Tools</h3>
+          <p>Highlighting, flashcards, and quick-review mode—built in to help you actually learn.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏫</div>
+          <h3>Organize by Class</h3>
+          <p>Create subjects, organize lectures, and search across all your notes instantly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <h2>How It Works in 3 Steps</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Record or Upload</h3>
+          <p>Record a lecture with your browser mic or upload your audio file. It's that simple.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Structure Automatically</h3>
+          <p>Your lecture is organized into structured notes with topics and subtopics, ready to learn from.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Learn & Study</h3>
+          <p>Highlight key ideas, create flashcards, and use deep dives to truly understand the material.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2>Ready to Transform Your Learning?</h2>
+      <p>No credit card required. Start free today.</p>
+      <button class="btn btn-primary btn-large" onclick="navigateTo('login')">Get Started Now</button>
+    </section>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div id="login-page" class="page" style="display: none;">
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Welcome Back</h2>
+        <p>Sign in to your account to continue learning.</p>
+
+        <!-- Google Sign In -->
+        <button class="btn btn-primary" onclick="signInWithGoogle()" style="width: 100%; margin-bottom: 20px;">
+          🔵 Sign in with Google
+        </button>
+
+        <div class="divider">Or</div>
+
+        <!-- Email Sign In -->
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••">
+        </div>
+        <button class="btn btn-primary" onclick="handleEmailSignIn()" style="width: 100%;">Sign In</button>
+
+        <div class="auth-footer">
+          Don't have an account? <a href="#" onclick="showSignUpForm()">Sign up</a>
+        </div>
+      </div>
+
+      <!-- Sign Up Form (Hidden by default) -->
+      <div class="auth-box" id="signupBox" style="display: none;">
+        <h2>Create Account</h2>
+        <p>Join millions of students learning smarter.</p>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signupPassword" placeholder="••••••••">
+        </div>
+        <button class="btn btn-primary" onclick="handleEmailSignUp()" style="width: 100%;">Create Account</button>
+
+        <div class="auth-footer">
+          Already have an account? <a href="#" onclick="showSignInForm()">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING PAGE -->
+  <div id="onboarding-page" class="page" style="display: none;">
+    <div class="onboarding-container">
+      <div class="onboarding-header">
+        <h1>Let's Get Started</h1>
+        <p>Tell us about your studies so we can personalize your experience.</p>
+      </div>
+
+      <form id="onboardingForm" class="onboarding-form">
+        <div class="form-group">
+          <label>What's your school level?</label>
+          <select id="schoolLevel" required>
+            <option value="">Select one</option>
+            <option value="high-school">High School</option>
+            <option value="college">College / University</option>
+            <option value="graduate">Graduate School</option>
+            <option value="professional">Professional Training</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>What subjects or classes are you taking?</label>
+          <p class="hint">Add as many as you want, separated by commas (e.g., Biology, History, Calculus)</p>
+          <input type="text" id="subjects" placeholder="Biology, History, Calculus...">
+        </div>
+
+        <div class="form-group">
+          <label>How do you prefer to organize your notes?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="orgMethod" value="by-class" checked>
+              By Class / Subject
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="orgMethod" value="by-date">
+              By Date
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="orgMethod" value="by-topic">
+              By Topic
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="completeOnboarding()" style="width: 100%;">Continue to Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div id="dashboard-page" class="page" style="display: none;">
+    <div class="dashboard-container">
+      <!-- Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1>Welcome, <span id="userGreeting">Student</span></h1>
+          <p>Your learning hub</p>
+        </div>
+        <button class="btn btn-primary" onclick="openLectureInput()">+ New Lecture</button>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="lectureCount">0</div>
+          <div class="stat-label">Lectures</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="noteCount">0</div>
+          <div class="stat-label">Notes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="hoursSaved">0</div>
+          <div class="stat-label">Hours Saved</div>
+        </div>
+      </div>
+
+      <!-- Recent Lectures -->
+      <section class="dashboard-section">
+        <h2>Recent Lectures</h2>
+        <div id="recentLectures" class="lectures-grid">
+          <div class="empty-state">
+            <p>No lectures yet. <a href="#" onclick="openLectureInput()">Record your first lecture</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subjects -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>Your Subjects</h2>
+          <button class="btn btn-secondary btn-small" onclick="openSubjectForm()">+ Add Subject</button>
+        </div>
+        <div id="subjectsGrid" class="subjects-grid">
+          <div class="empty-state">
+            <p>No subjects yet. Add one to get started.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- LECTURE WORKSPACE PAGE -->
+  <div id="lecture-page" class="page" style="display: none;">
+    <div class="lecture-container">
+      <!-- Top Navigation -->
+      <div class="lecture-nav">
+        <button class="btn btn-secondary btn-small" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
+        <h2 id="lectureTitle">Lecture</h2>
+        <button class="btn btn-secondary btn-small" onclick="downloadNotes()">⬇ Export</button>
+      </div>
+
+      <div class="lecture-workspace">
+        <!-- Left Sidebar -->
+        <aside class="lecture-sidebar">
+          <!-- Key Ideas Panel -->
+          <div class="sidebar-panel">
+            <h3>💡 Key Ideas</h3>
+            <div id="keyIdeasList" class="ideas-list">
+              <div class="empty-state-small">Click + to add ideas</div>
+            </div>
+            <input type="text" id="newKeyIdea" placeholder="Add an idea...">
+            <button class="btn btn-small btn-primary" onclick="addKeyIdea()" style="width: 100%; margin-top: 8px;">+</button>
+          </div>
+
+          <!-- Vocabulary List -->
+          <div class="sidebar-panel">
+            <h3>📚 Vocabulary</h3>
+            <div id="vocabularyList" class="vocab-list">
+              <div class="empty-state-small">Click + to add terms</div>
+            </div>
+            <div class="vocab-input-group">
+              <input type="text" id="newVocabTerm" placeholder="Term" style="flex: 1;">
+              <button class="btn btn-small btn-primary" onclick="addVocabTerm()">+</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lecture-main">
+          <!-- Timeline/Segments -->
+          <div class="timeline-section">
+            <h3>📍 Lecture Timeline</h3>
+            <div id="timelineSegments" class="timeline">
+              <div class="empty-state-small">Timeline will populate as you add segments</div>
+            </div>
+          </div>
+
+          <!-- Notes Editor -->
+          <div class="notes-section">
+            <div class="notes-header">
+              <h3>📝 Notes</h3>
+              <div class="notes-controls">
+                <button class="btn btn-small" id="editModeBtn" onclick="toggleEditMode()">✏ Edit</button>
+                <button class="btn btn-small" id="viewModeBtn" onclick="toggleEditMode()" style="display: none;">👁 View</button>
+              </div>
+            </div>
+            <div id="notesContent" class="notes-display">
+              <div class="empty-state">
+                <p>Add your notes to get started</p>
+              </div>
+            </div>
+            <textarea id="notesEditor" class="notes-editor" placeholder="Your structured notes appear here..." style="display: none;"></textarea>
+          </div>
+
+          <!-- Study Tools -->
+          <div class="study-tools">
+            <h3>🎓 Study Tools</h3>
+            <div class="tools-buttons">
+              <button class="btn btn-secondary" onclick="toggleHighlightMode()">🖍 Highlighting</button>
+              <button class="btn btn-secondary" onclick="showFlashcards()">🃏 Flashcards</button>
+              <button class="btn btn-secondary" onclick="toggleQuickReview()">⚡ Quick Review</button>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="lecture-sidebar">
+          <!-- Deep Dives -->
+          <div class="sidebar-panel">
+            <h3>🔬 Deep Dives</h3>
+            <div id="deepDivesList" class="deep-dives-list">
+              <div class="empty-state-small">Click + to add deep dives</div>
+            </div>
+            <button class="btn btn-small btn-primary" onclick="openDeepDiveForm()" style="width: 100%;">+ Add Deep Dive</button>
+          </div>
+
+          <!-- Audio Player -->
+          <div class="sidebar-panel">
+            <h3>🎵 Audio</h3>
+            <audio id="lectureAudio" controls style="width: 100%; margin-bottom: 12px;"></audio>
+            <p id="lectureMetadata" class="text-small"></p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <!-- Lecture Input Modal -->
+  <div id="lectureInputModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>New Lecture</h2>
+        <button class="modal-close" onclick="closeLectureInput()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="input-tabs">
+          <button class="tab-btn active" onclick="switchInputTab('record')">🎤 Record</button>
+          <button class="tab-btn" onclick="switchInputTab('upload')">⬆ Upload</button>
+        </div>
+
+        <!-- Record Tab -->
+        <div id="recordTab" class="tab-content active">
+          <div class="form-group">
+            <label>Lecture Title</label>
+            <input type="text" id="recordTitle" placeholder="e.g., Biology 101 - Chapter 3">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select id="recordSubject">
+              <option value="">Select a subject</option>
+            </select>
+          </div>
+          <div class="recorder-controls">
+            <button class="btn btn-primary" id="recordBtn" onclick="startRecording()">🔴 Start Recording</button>
+            <button class="btn btn-danger" id="stopRecordBtn" onclick="stopRecording()" style="display: none;">⏹ Stop</button>
+            <div id="recordingTime" style="margin-top: 12px; text-align: center; display: none;">
+              Recording: <span id="recordingDuration">00:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Tab -->
+        <div id="uploadTab" class="tab-content" style="display: none;">
+          <div class="form-group">
+            <label>Lecture Title</label>
+            <input type="text" id="uploadTitle" placeholder="e.g., Biology 101 - Chapter 3">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select id="uploadSubject">
+              <option value="">Select a subject</option>
+            </select>
+          </div>
+          <div class="file-upload">
+            <input type="file" id="audioFile" accept="audio/*" onchange="handleFileSelect(event)">
+            <label for="audioFile" class="file-upload-label">
+              <div class="upload-icon">📁</div>
+              <p>Click to upload audio</p>
+              <small>Supports MP3, WAV, M4A, OGG</small>
+            </label>
+          </div>
+          <div id="fileInfo" style="display: none; margin-top: 12px;">
+            <p>Selected: <span id="fileName"></span></p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="submitLecture()" style="width: 100%; margin-top: 20px;">Create Lecture</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject Form Modal -->
+  <div id="subjectModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>New Subject</h2>
+        <button class="modal-close" onclick="closeSubjectForm()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Subject Name</label>
+          <input type="text" id="subjectName" placeholder="e.g., Biology, History">
+        </div>
+        <div class="form-group">
+          <label>Description (optional)</label>
+          <textarea id="subjectDesc" placeholder="A short description..."></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="createSubject()" style="width: 100%;">Create Subject</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flashcards Modal -->
+  <div id="flashcardsModal" class="modal" style="display: none;">
+    <div class="modal-content modal-large">
+      <div class="modal-header">
+        <h2>Flashcards</h2>
+        <button class="modal-close" onclick="closeFlashcards()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="flashcardContent" class="flashcard-display">
+          <!-- Flashcards rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/lecture.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/audio-recorder.js"></script>
+  <script src="js/enhancements.js"></script>
+  <script src="js/ui-enhancements.js"></script>
+  <script src="js/integration.js"></script>
+</body>
+</html>

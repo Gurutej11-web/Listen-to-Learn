@@ -1,0 +1,458 @@
+/* Enhanced Notifications, Search, and Form Validation Styles */
+
+/* ==========================================
+   TOAST NOTIFICATIONS (ENHANCED)
+   ========================================== */
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 300px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toast-exit {
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: white;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.toast-info {
+  background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+  color: white;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.toast-warning {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: white;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* ==========================================
+   FORM VALIDATION STYLES
+   ========================================== */
+
+input.invalid,
+textarea.invalid,
+select.invalid {
+  border-color: var(--danger) !important;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+body.dark-mode input.invalid,
+body.dark-mode textarea.invalid,
+body.dark-mode select.invalid {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.field-error {
+  display: block;
+  color: var(--danger);
+  font-size: 0.8rem;
+  margin-top: 4px;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.field-success {
+  border-color: var(--success) !important;
+}
+
+.form-group.has-error {
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   SEARCH & RESULTS
+   ========================================== */
+
+.search-container {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+}
+
+.search-input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-right: 40px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .search-input {
+  border-color: var(--border-dark);
+  background-color: #1E293B;
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  pointer-events: none;
+}
+
+.search-results {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: var(--radius-lg);
+  background-color: white;
+  border: 1px solid var(--border);
+}
+
+body.dark-mode .search-results {
+  background-color: #1E293B;
+  border-color: var(--border-dark);
+}
+
+.search-result-item {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .search-result-item {
+  border-color: var(--border-dark);
+}
+
+.search-result-item:hover {
+  background-color: var(--bg-light);
+}
+
+body.dark-mode .search-result-item:hover {
+  background-color: #0F172A;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.result-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.result-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.result-highlight {
+  background-color: #FEF08A;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   ENHANCED BUTTONS
+   ========================================== */
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+}
+
+.btn-floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+  z-index: 50;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ==========================================
+   PROGRESS INDICATORS
+   ========================================== */
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .progress-bar {
+  background-color: var(--border-dark);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   BADGES & TAGS
+   ========================================== */
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-primary {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--primary);
+}
+
+.badge-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.badge-danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  margin: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.tag-removable {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 8px;
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ==========================================
+   MODAL IMPROVEMENTS
+   ========================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  animation: modalSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlide {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   TOOLTIPS
+   ========================================== */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  border-bottom: 1px dotted var(--text-secondary);
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #1F2937;
+  color: white;
+  text-align: center;
+  border-radius: var(--radius-md);
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ==========================================
+   RESPONSIVE ENHANCEMENTS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .toast {
+    min-width: 280px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .search-results {
+    max-height: 300px;
+  }
+
+  .btn-floating {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .tooltip .tooltiptext {
+    width: 150px;
+    margin-left: -75px;
+  }
+}

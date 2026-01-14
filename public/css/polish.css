@@ -1,0 +1,565 @@
+/* ==========================================
+   FINAL POLISH & MICRO-INTERACTIONS
+   ========================================== */
+
+/* ==========================================
+   REFINED BUTTON STYLES
+   ========================================== */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================
+   CARD REFINEMENTS
+   ========================================== */
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  pointer-events: none;
+  animation: shimmerMove 3s infinite;
+}
+
+@keyframes shimmerMove {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* ==========================================
+   FORM FIELD IMPROVEMENTS
+   ========================================== */
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  color: var(--primary);
+  transform: translateY(-5px) scale(0.95);
+}
+
+input,
+textarea,
+select {
+  transition: all 0.3s ease;
+  background-color: var(--bg-light);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #1E293B;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: var(--bg-light);
+  box-shadow: inset 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  background-color: #1E293B;
+}
+
+/* ==========================================
+   TEXT SELECTION STYLING
+   ========================================== */
+
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* ==========================================
+   SCROLLBAR STYLING
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--primary) var(--bg-light);
+  scrollbar-width: thin;
+}
+
+body.dark-mode {
+  scrollbar-color: var(--primary) #0F172A;
+}
+
+/* ==========================================
+   DROPDOWN & SELECT IMPROVEMENTS
+   ========================================== */
+
+select {
+  appearance: none;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234F46E5' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* ==========================================
+   LINK HOVER EFFECTS
+   ========================================== */
+
+a:not(.btn):not([class*="nav"]) {
+  position: relative;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:not(.btn):not([class*="nav"])::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+a:not(.btn):not([class*="nav"]):hover::after {
+  width: 100%;
+}
+
+/* ==========================================
+   CODE BLOCK STYLING
+   ========================================== */
+
+code {
+  background-color: var(--bg-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: var(--primary);
+}
+
+body.dark-mode code {
+  background-color: #1E293B;
+}
+
+pre {
+  background-color: var(--bg-light);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+
+body.dark-mode pre {
+  background-color: #0F172A;
+  border-color: var(--border-dark);
+}
+
+/* ==========================================
+   TABLE IMPROVEMENTS
+   ========================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-lg);
+}
+
+thead {
+  background-color: var(--bg-light);
+  border-bottom: 2px solid var(--border);
+}
+
+body.dark-mode thead {
+  background-color: #1E293B;
+  border-bottom-color: var(--border-dark);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s ease;
+}
+
+body.dark-mode tbody tr {
+  border-bottom-color: var(--border-dark);
+}
+
+tbody tr:hover {
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+body.dark-mode tbody tr:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+}
+
+td,
+th {
+  padding: 12px;
+  text-align: left;
+}
+
+/* ==========================================
+   BLOCKQUOTE STYLING
+   ========================================== */
+
+blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   HR IMPROVEMENTS
+   ========================================== */
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: var(--spacing-xl) 0;
+}
+
+body.dark-mode hr {
+  background: var(--border-dark);
+}
+
+/* ==========================================
+   LIST IMPROVEMENTS
+   ========================================== */
+
+ul,
+ol {
+  padding-left: 24px;
+  margin-bottom: var(--spacing-lg);
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Custom list bullets */
+ul {
+  list-style-type: none;
+}
+
+ul li::before {
+  content: '▸';
+  color: var(--primary);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* ==========================================
+   DESCRIPTION LIST STYLING
+   ========================================== */
+
+dl {
+  margin-bottom: var(--spacing-lg);
+}
+
+dt {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--spacing-md);
+  margin-bottom: 4px;
+}
+
+dd {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ==========================================
+   INLINE ELEMENT IMPROVEMENTS
+   ========================================== */
+
+mark {
+  background-color: rgba(245, 158, 11, 0.2);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+strong,
+b {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+em,
+i {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+small {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* ==========================================
+   UTILITY CLASSES FOR POLISH
+   ========================================== */
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow-hover:hover {
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.no-select {
+  user-select: none;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.blur-hover:hover {
+  filter: blur(2px);
+}
+
+.grayscale-hover:hover {
+  filter: grayscale(100%);
+}
+
+.brightness-hover:hover {
+  filter: brightness(1.1);
+}
+
+/* ==========================================
+   FOCUS MANAGEMENT
+   ========================================== */
+
+:focus-within {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+   DARK MODE POLISH
+   ========================================== */
+
+body.dark-mode {
+  color-scheme: dark;
+}
+
+body.dark-mode a {
+  color: #93C5FD;
+}
+
+body.dark-mode strong {
+  color: #E0E7FF;
+}
+
+body.dark-mode code {
+  color: #F87171;
+}
+
+body.dark-mode blockquote {
+  color: #9CA3AF;
+  border-left-color: #6366F1;
+}
+
+/* ==========================================
+   SMOOTH PAGE TRANSITIONS
+   ========================================== */
+
+.page {
+  animation: pageEnter 0.3s ease forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   LOADING SKELETON
+   ========================================== */
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-light) 25%, #E8EEF6 50%, var(--bg-light) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+body.dark-mode .skeleton {
+  background: linear-gradient(90deg, #1E293B 25%, #2D3B52 50%, #1E293B 75%);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 12px;
+  margin-bottom: 8px;
+}
+
+.skeleton-title {
+  height: 24px;
+  margin-bottom: 16px;
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
