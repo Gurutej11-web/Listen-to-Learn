@@ -2,7 +2,7 @@
   "indexes": [
     {
       "collectionGroup": "lectures",
-      "queryScope": "Collection",
+      "queryScope": "COLLECTION",
       "fields": [
         {
           "fieldPath": "userId",
@@ -16,7 +16,7 @@
     },
     {
       "collectionGroup": "lectures",
-      "queryScope": "Collection",
+      "queryScope": "COLLECTION",
       "fields": [
         {
           "fieldPath": "userId",
